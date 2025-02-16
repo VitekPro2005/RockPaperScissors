@@ -1,11 +1,8 @@
 <?php
 $hands = ['rock', 'paper', 'scissors'];
+$botHand = $hands[array_rand($hands)];
 if ($_SERVER['REQUEST_METHOD'] === 'POST'){
   $userHand = ($_POST['user_hand']);
-  if (!in_array($userHand, $hands)) {
-    $result = "Please choose rock, paper or scissors";
-  } else {
-    $botHand = $hands[array_rand($hands)];
     if ($userHand === $botHand) {
       $result = "It's a Tie! Both of you chose $userHand";
     } elseif (
@@ -18,7 +15,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
       $result="It's an L, loser, $userHand loses to $botHand";
     }
   }
-}
 ?>
 
 <!DOCTYPE html>
@@ -39,8 +35,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
     </select>
     <button type="submit">Play</button>
   </form>
-</body>
-</html>
 
 <?php if (isset($result)): ?>
   <h1>Result:</h1>
