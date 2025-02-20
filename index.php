@@ -1,18 +1,25 @@
 <?php
 $hands = ['rock', 'paper', 'scissors'];
+//создаём массив с вариантами выбора
 $botHand = $hands[array_rand($hands)];
+//создаём переменную, которая хранит случайный вариант из массива
 if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+//проверяем отправлен ли запрос методом пост, заполнено ли поле
   $userHand = ($_POST['user_hand']);
+//выбранное пользователем значение сохраняется в переменную 
     if ($userHand === $botHand) {
       $result = "It's a Tie! Both of you chose $userHand";
+//прописывается условие с ничьёй с сохранением результата
     } elseif (
       ($userHand === "rock" && $botHand === "scissors") ||
       ($userHand === "scissors" && $botHand === "paper") ||
       ($userHand === "paper" && $botHand === "rock")
     ) {
       $result="It's an easy W! $userHand beats $botHand";
+      //прописывается условие с победой пользователя
     } else {
       $result="It's an L, loser, $userHand loses to $botHand";
+      //прописывается условие с поражением пользователя
     }
   }
 ?>
